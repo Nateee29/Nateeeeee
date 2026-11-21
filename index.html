@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ed">
+  <title>Wedding Celebration | RSVP & Attendance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#f7f3ed;--white:#fffdfa;--ink:#38352f;--muted:#827b70;--gold:#ad895e;--gold-dark:#8d6c47;--line:#e7ded2;--green:#47745c;--red:#a85b55;--shadow:0 18px 55px rgba(69,53,34,.08)}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;min-height:100vh}
+    button,input,select{font:inherit}button{cursor:pointer}.shell{max-width:1100px;margin:auto;padding:24px}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:8px 0 22px}.brand{font-family:"Cormorant Garamond",serif;font-size:24px;letter-spacing:.04em}.top-actions{display:flex;gap:9px;align-items:center}
+    .btn{border:1px solid var(--line);background:var(--white);color:var(--ink);padding:11px 16px;border-radius:999px;font-weight:600;font-size:13px}.btn.primary{background:var(--gold);border-color:var(--gold);color:white}.btn.primary:hover{background:var(--gold-dark)}.btn:disabled{opacity:.55;cursor:not-allowed}
+    .hero{position:relative;overflow:hidden;background:var(--white);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:clamp(34px,7vw,76px) 22px;text-align:center}
+    .hero:before,.hero:after{content:"✧";position:absolute;color:#d7c4a8;font-size:54px;opacity:.65}.hero:before{top:18px;left:25px}.hero:after{bottom:12px;right:28px}
+    .eyebrow{font-size:10px;letter-spacing:.27em;text-transform:uppercase;color:var(--gold);font-weight:700}.hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(48px,8vw,78px);font-weight:400;line-height:.95;margin:18px 0 8px}.names{font-family:"Cormorant Garamond",serif;font-size:28px;color:var(--gold-dark)}.hero p{color:var(--muted);font-size:13px;letter-spacing:.08em;margin:20px 0 0}
+    .content{display:grid;grid-template-columns:1fr;gap:20px;max-width:690px;margin:24px auto 0}.panel{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow)}.panel h2{font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:500;margin:0 0 6px}.sub{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 20px}.field{display:flex;flex-direction:column;gap:7px;margin:14px 0}.field label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700}.field input,.field select{width:100%;border:1px solid var(--line);background:#fff;border-radius:10px;padding:13px 14px;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px #ad895e20}.wide{width:100%;padding:14px}.result{margin-top:16px;border-radius:12px;padding:16px;display:none;line-height:1.5;font-size:14px}.result.show{display:block}.result.success{background:#edf4ef;color:#355b45;border:1px solid #d4e5d9}.result.warn{background:#fbf2e5;color:#795a2e;border:1px solid #ead8b9}.result.error{background:#f8eeee;color:#8d4742;border:1px solid #ecd4d2}.result strong{display:block;font-size:16px;margin-bottom:3px}
+    .footer{text-align:center;color:var(--muted);font-size:11px;padding:28px 0}.hidden{display:none!important}.admin-wrap{max-width:1050px;margin:22px auto}.admin-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.admin-head h2{font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:500;margin:0}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.tab{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 14px;font-size:12px}.tab.active{background:#eadfce;border-color:#d8c4a7;color:#684f32}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.stat{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px}.stat span{display:block;color:var(--muted);font-size:11px}.stat b{display:block;font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:500;margin-top:4px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:white}table{width:100%;border-collapse:collapse;min-width:560px}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid #eee7de;font-size:12px}th{color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:#faf7f2}tr:last-child td{border-bottom:0}.pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:700;background:#f0ece5;color:#665d51}.pill.confirmed,.pill.arrived{background:#e8f1eb;color:#3d6a4d}.pill.declined{background:#f7eaea;color:#9b504b}.pill.pending{background:#f8f0e2;color:#8b6b39}.row-actions{display:flex;gap:6px}.small{padding:7px 10px;font-size:11px}.notice{padding:12px 14px;border:1px solid var(--line);background:#faf7f2;border-radius:10px;color:var(--muted);font-size:12px;line-height:1.6}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.filebox{border:1px dashed #cbb99f;border-radius:12px;padding:18px;background:#fcfaf6}.filebox input{width:100%;margin:12px 0}.muted{color:var(--muted)}.searchline{display:flex;gap:8px;margin:12px 0}.searchline input{flex:1;border:1px solid var(--line);border-radius:10px;padding:11px}.login{max-width:420px;margin:70px auto}.login .panel{padding:30px}
+    @media(max-width:700px){.shell{padding:14px}.topbar{align-items:flex-start}.brand{font-size:21px}.hero{padding:54px 16px}.hero:before{left:12px}.hero:after{right:14px}.panel{padding:20px}.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.admin-wrap{margin:14px auto}.top-actions{flex-wrap:wrap;justify-content:flex-end}.top-actions .btn{padding:9px 11px}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">A Celebration of Love</div>
+      <div class="top-actions">
+        <button class="btn" id="adminOpen">Staff access</button>
+      </div>
+    </header>
+
+    <main id="publicView">
+      <section class="hero">
+        <div class="eyebrow">Together with their families</div>
+        <h1>Wedding<br>Celebration</h1>
+        <div class="names">Bride Name <span style="color:#bca17e">&amp;</span> Groom Name</div>
+        <p>WE CAN'T WAIT TO CELEBRATE WITH YOU</p>
+      </section>
+      <div class="content">
+        <section class="panel">
+          <h2>Guest RSVP Check</h2>
+          <p class="sub">Enter the name you used when responding to the invitation. We'll check your RSVP against the invited guest list.</p>
+          <form id="lookupForm">
+            <div class="field"><label for="guestName">Full name</label><input id="guestName" autocomplete="name" maxlength="120" placeholder="Enter your full name" required></div>
+            <button class="btn primary wide" type="submit" id="lookupBtn">Check my RSVP</button>
+          </form>
+          <div id="lookupResult" class="result" role="status" aria-live="polite"></div>
+        </section>
+      </div>
+    </main>
+
+    <section id="loginView" class="login hidden">
+      <div class="panel">
+        <h2>Staff sign in</h2><p class="sub">Sign in with an account created by the event administrator.</p>
+        <form id="loginForm">
+          <div class="field"><label>Email</label><input id="loginEmail" type="email" required autocomplete="username"></div>
+          <div class="field"><label>Password</label><input id="loginPassword" type="password" required autocomplete="current-password"></div>
+          <button class="btn primary wide" type="submit" id="loginBtn">Sign in</button>
+          <button class="btn wide" type="button" id="backPublic" style="margin-top:8px">Back to guest page</button>
+        </form>
+        <div id="loginResult" class="result"></div>
+      </div>
+    </section>
+
+    <section id="adminView" class="admin-wrap hidden">
+      <div class="admin-head"><div><div class="eyebrow">Private event tools</div><h2>Attendance Dashboard</h2></div><button class="btn" id="logoutBtn">Sign out</button></div>
+      <div class="stats">
+        <div class="stat"><span>Invited guests</span><b id="statInvited">—</b></div>
+        <div class="stat"><span>Confirmed</span><b id="statConfirmed">—</b></div>
+        <div class="stat"><span>Declined</span><b id="statDeclined">—</b></div>
+        <div class="stat"><span>Checked in</span><b id="statArrived">—</b></div>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-tab="checkin">Guest check-in</button>
+        <button class="tab" data-tab="imports">CSV imports</button>
+        <button class="tab" data-tab="guestlist">Guest list</button>
+      </div>
+
+      <div id="tab-checkin" class="panel">
+        <h2>Check in a guest</h2><p class="sub">Search an invited guest and mark them as arrived at the venue.</p>
+        <div class="searchline"><input id="staffSearch" placeholder="Search guest name..."><button class="btn primary" id="staffSearchBtn">Search</button></div>
+        <div id="staffSearchResults"></div>
+      </div>
+
+      <div id="tab-imports" class="panel hidden">
+        <h2>Import your CSV files</h2><p class="sub">Export Google Forms responses as CSV. Import your invited guest list first, then import the RSVP responses. Existing records are updated rather than duplicated.</p>
+        <div class="grid2">
+          <div class="filebox">
+            <b>1. Invited guest list</b><p class="sub">CSV should contain a column for the guest's full name. Recommended header: <code>Full Name</code>.</p>
+            <input type="file" id="guestCsv" accept=".csv,text/csv">
+            <button class="btn primary" id="importGuestsBtn">Import invited guests</button>
+          </div>
+          <div class="filebox">
+            <b>2. Google Forms RSVP responses</b><p class="sub">CSV should contain the respondent's name and RSVP answer. Recommended headers: <code>Full Name</code> and <code>Attendance</code>.</p>
+            <input type="file" id="rsvpCsv" accept=".csv,text/csv">
+            <button class="btn primary" id="importRsvpBtn">Import RSVP responses</button>
+          </div>
+        </div>
+        <div class="notice" style="margin-top:16px"><b>Important:</b> Header names are detected automatically for common labels such as Name, Full Name, Guest Name, RSVP, Attendance, and Will you attend. If a response name does not exactly match one invited guest, it will be skipped and reported for manual review. This avoids assigning an RSVP to the wrong person.</div>
+        <div id="importResult" class="result"></div>
+      </div>
+
+      <div id="tab-guestlist" class="panel hidden">
+        <h2>Invited guest list</h2><p class="sub">Review RSVP status and attendance records.</p>
+        <div class="searchline"><input id="listSearch" placeholder="Filter guest list..."><button class="btn" id="refreshListBtn">Refresh</button></div>
+        <div id="guestTable" class="table-wrap"></div>
+      </div>
+      <div id="adminMessage" class="result"></div>
+    </section>
+    <footer class="footer">Made with love · Wedding RSVP & Attendance</footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script>
+    // STEP 1: Replace these two values with your Supabase Project URL and publishable/anon key.
+    // Never put your Supabase service_role/secret key in this file.
+    const SUPABASE_URL = "https://dkbqdclbmqtrfyamvcyb.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_NRbDKymGLcilDNtY0JbBGA_RimH7QAo";
+
+    const configured = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("YOUR_") && !SUPABASE_ANON_KEY.includes("YOUR_");
+    const db = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+    const $ = id => document.getElementById(id);
+    let guestsCache = [];
+
+    function showResult(el, type, title, message) {
+      el.className = "result show " + type;
+      el.innerHTML = `<strong>${escapeHtml(title)}</strong>${escapeHtml(message)}`;
+    }
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    }
+    function norm(value) {
+      return String(value || "").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+    }
+    function statusLabel(s) {
+      const v = (s || "pending").toLowerCase();
+      return v === "confirmed" ? "Confirmed" : v === "declined" ? "Declined" : "No response";
+    }
+    function setView(view) {
+      $("publicView").classList.toggle("hidden", view !== "public");
+      $("loginView").classList.toggle("hidden", view !== "login");
+      $("adminView").classList.toggle("hidden", view !== "admin");
+    }
+    function ready() {
+      if (!configured) {
+        showResult($("lookupResult"),"warn","Website setup required","The Supabase connection has not been configured yet. Please contact the event organizer.");
+        return false;
+      }
+      return true;
+    }
+
+    $("lookupForm").addEventListener("submit", async e => {
+      e.preventDefault();
+      const name = $("guestName").value.trim();
+      if (!name) return;
+      if (!ready()) return;
+      const btn = $("lookupBtn"); btn.disabled = true; btn.textContent = "Checking...";
+      const result = $("lookupResult"); result.className = "result";
+      try {
+        const { data, error } = await db.rpc("lookup_guest_rsvp", { p_name: name });
+        if (error) throw error;
+        if (!data || data.length === 0) {
+          showResult(result,"warn","We couldn't find a matching RSVP","Please check the spelling or contact the couple or event organizer for assistance.");
+        } else if (data.length > 1) {
+          showResult(result,"warn","Please contact the event organizer","We found more than one guest with that name. The organizer can verify your invitation.");
+        } else {
+          const row = data[0], s = (row.rsvp_status || "pending").toLowerCase();
+          if (s === "confirmed") showResult(result,"success","Your RSVP is confirmed",`Thank you, ${row.guest_name}. We look forward to celebrating with you!`);
+          else if (s === "declined") showResult(result,"warn","Your response is recorded as declined",`Thank you for letting us know, ${row.guest_name}.`);
+          else showResult(result,"warn","Your RSVP is not yet recorded",`Hello, ${row.guest_name}. We don't see a submitted response yet. Please contact the event organizer.`);
+        }
+      } catch(err) {
+        showResult(result,"error","Unable to check RSVP",err.message || "Please try again later.");
+      } finally { btn.disabled = false; btn.textContent = "Check my RSVP"; }
+    });
+
+    $("adminOpen").onclick = () => setView("login");
+    $("backPublic").onclick = () => setView("public");
+    $("loginForm").addEventListener("submit", async e => {
+      e.preventDefault();
+      if (!ready()) { showResult($("loginResult"),"error","Setup incomplete","Configure the Supabase URL and key in index.html first."); return; }
+      const btn = $("loginBtn"); btn.disabled = true; btn.textContent = "Signing in...";
+      const {data,error} = await db.auth.signInWithPassword({email:$("loginEmail").value.trim(),password:$("loginPassword").value});
+      btn.disabled = false; btn.textContent = "Sign in";
+      if (error) showResult($("loginResult"),"error","Sign-in failed",error.message);
+      else { setView("admin"); await refreshDashboard(); }
+    });
+    $("logoutBtn").onclick = async () => { await db.auth.signOut(); setView("public"); };
+    db?.auth.onAuthStateChange((_event, session) => { if (session) { setView("admin"); refreshDashboard(); } });
+
+    document.querySelectorAll(".tab").forEach(btn => btn.onclick = () => {
+      document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===btn));
+      ["checkin","imports","guestlist"].forEach(t=>$("tab-"+t).classList.toggle("hidden",t!==btn.dataset.tab));
+      if(btn.dataset.tab==="guestlist") loadGuestList();
+    });
+
+    async function refreshDashboard() {
+      if (!db) return;
+      const {data,error} = await db.from("guest_attendance_summary").select("*");
+      if (error) { showResult($("adminMessage"),"error","Dashboard error",error.message); return; }
+      const rows = data || [];
+      $("statInvited").textContent = rows.length;
+      $("statConfirmed").textContent = rows.filter(x=>x.rsvp_status==="confirmed").length;
+      $("statDeclined").textContent = rows.filter(x=>x.rsvp_status==="declined").length;
+      $("statArrived").textContent = rows.filter(x=>x.checked_in).length;
+      guestsCache = rows;
+    }
+    function detectColumn(headers, candidates) {
+      const normalized = headers.map(h=>({raw:h,n:norm(h)}));
+      for (const c of candidates) {
+        const found = normalized.find(h=>h.n===norm(c));
+        if(found) return found.raw;
+      }
+      for (const c of candidates) {
+        const found = normalized.find(h=>h.n.includes(norm(c)));
+        if(found) return found.raw;
+      }
+      return null;
+    }
+    async function parseCsv(file) {
+      if (!file) throw new Error("Please choose a CSV file first.");
+      return new Promise((resolve,reject)=>Papa.parse(file,{header:true,skipEmptyLines:true,complete:r=>resolve(r),error:reject}));
+    }
+    async function importGuests() {
+      const out=$("importResult");
+      try {
+        const parsed=await parseCsv($("guestCsv").files[0]);
+        const headers=parsed.meta.fields||[];
+        const nameCol=detectColumn(headers,["Full Name","Guest Name","Name","Invitee"]);
+        if(!nameCol) throw new Error("Could not detect the guest name column. Please use a header such as Full Name.");
+        const names=[...new Set(parsed.data.map(r=>(r[nameCol]||"").trim()).filter(Boolean))];
+        if(!names.length) throw new Error("No guest names were found in the CSV.");
+        let inserted=0, failed=[];
+        for(let i=0;i<names.length;i+=100){
+          const batch=names.slice(i,i+100).map(full_name=>({full_name,normalized_name:norm(full_name),is_invited:true}));
+          const {error}=await db.from("guests").upsert(batch,{onConflict:"normalized_name",ignoreDuplicates:false});
+          if(error) failed.push(error.message); else inserted+=batch.length;
+        }
+        await refreshDashboard();
+        showResult(out,failed.length?"warn":"success","Guest import complete",`${inserted} guest record(s) processed. ${failed.length?failed.join("; "):"Existing matching names were updated, not duplicated."}`);
+      } catch(err){showResult(out,"error","Guest import failed",err.message);}
+    }
+    async function importRsvps() {
+      const out=$("importResult");
+      try {
+        const parsed=await parseCsv($("rsvpCsv").files[0]), headers=parsed.meta.fields||[];
+        const nameCol=detectColumn(headers,["Full Name","Guest Name","Name","Your Name","Respondent Name"]);
+        const statusCol=detectColumn(headers,["Attendance","RSVP","Will you attend","Are you attending","Response"]);
+        if(!nameCol||!statusCol) throw new Error("Could not detect both name and RSVP answer columns. Use headers such as Full Name and Attendance.");
+        const {data:guests,error:gerr}=await db.from("guests").select("id,full_name,normalized_name").eq("is_invited",true);
+        if(gerr) throw gerr;
+        const byName=new Map(); (guests||[]).forEach(g=>{const arr=byName.get(g.normalized_name)||[];arr.push(g);byName.set(g.normalized_name,arr);});
+        let matched=0, skipped=[], updates=[];
+        for(const row of parsed.data){
+          const raw=(row[nameCol]||"").trim(), key=norm(raw), answer=norm(row[statusCol]);
+          if(!raw) continue;
+          const matches=byName.get(key)||[];
+          if(matches.length!==1){skipped.push(raw+(matches.length>1?" (duplicate invited name)":" (not on invited list)"));continue;}
+          let status;
+          if(/declin|cannot attend|can t attend|not attending|will not/.test(answer)) status="declined";
+          else if(/yes|attend|confirm|going|joyfully accept|accept/.test(answer)) status="confirmed";
+          else {skipped.push(raw+" (unrecognized RSVP answer)");continue;}
+          updates.push({guest_id:matches[0].id,rsvp_status:status,raw_response_name:raw,submitted_at:new Date().toISOString()});
+        }
+        for(let i=0;i<updates.length;i+=100){
+          const {error}=await db.from("rsvps").upsert(updates.slice(i,i+100),{onConflict:"guest_id"});
+          if(error) throw error;
+          matched+=updates.slice(i,i+100).length;
+        }
+        await refreshDashboard();
+        const summary=`${matched} RSVP response(s) matched and imported. ${skipped.length} row(s) need review.`+(skipped.length?" Review: "+skipped.slice(0,12).join(", ")+(skipped.length>12?"…":""):"");
+        showResult(out,skipped.length?"warn":"success","RSVP import complete",summary);
+      } catch(err){showResult(out,"error","RSVP import failed",err.message);}
+    }
+    $("importGuestsBtn").onclick=importGuests;
+    $("importRsvpBtn").onclick=importRsvps;
+
+    async function loadGuestList() {
+      const {data,error}=await db.from("guest_attendance_summary").select("*").order("full_name");
+      if(error){$("guestTable").textContent=error.message;return;}
+      guestsCache=data||[]; renderGuestList(guestsCache);
+    }
+    function renderGuestList(rows) {
+      if(!rows.length){$("guestTable").innerHTML='<div class="notice">No invited guests found. Import your guest list in CSV Imports.</div>';return;}
+      $("guestTable").innerHTML=`<table><thead><tr><th>Guest</th><th>RSVP</th><th>Attendance</th><th>Action</th></tr></thead><tbody>${rows.map(g=>`<tr><td>${escapeHtml(g.full_name)}</td><td><span class="pill ${escapeHtml(g.rsvp_status||"pending")}">${statusLabel(g.rsvp_status)}</span></td><td><span class="pill ${g.checked_in?"arrived":"pending"}">${g.checked_in?"Arrived":"Not arrived"}</span></td><td>${g.checked_in?'<span class="muted">Checked in</span>':`<button class="btn primary small" data-checkin="${g.id}">Check in</button>`}</td></tr>`).join("")}</tbody></table>`;
+      $("guestTable").querySelectorAll("[data-checkin]").forEach(b=>b.onclick=()=>checkIn(b.dataset.checkin));
+    }
+    $("listSearch").addEventListener("input",()=>{const q=norm($("listSearch").value);renderGuestList(guestsCache.filter(g=>norm(g.full_name).includes(q)));});
+    $("refreshListBtn").onclick=loadGuestList;
+
+    async function searchStaff() {
+      const q=norm($("staffSearch").value);
+      if(q.length<2){$("staffSearchResults").innerHTML='<div class="notice">Enter at least two characters to search.</div>';return;}
+      const {data,error}=await db.from("guest_attendance_summary").select("*").ilike("full_name",`%${$("staffSearch").value.trim()}%`).limit(20);
+      if(error){$("staffSearchResults").textContent=error.message;return;}
+      if(!data.length){$("staffSearchResults").innerHTML='<div class="notice">No matching invited guest found.</div>';return;}
+      $("staffSearchResults").innerHTML=`<div class="table-wrap"><table><thead><tr><th>Guest</th><th>RSVP</th><th>Attendance</th><th>Action</th></tr></thead><tbody>${data.map(g=>`<tr><td>${escapeHtml(g.full_name)}</td><td>${statusLabel(g.rsvp_status)}</td><td>${g.checked_in?"Arrived":"Not arrived"}</td><td>${g.checked_in?'<span class="muted">Done</span>':`<button class="btn primary small" data-checkin="${g.id}">Check in</button>`}</td></tr>`).join("")}</tbody></table></div>`;
+      $("staffSearchResults").querySelectorAll("[data-checkin]").forEach(b=>b.onclick=()=>checkIn(b.dataset.checkin));
+    }
+    $("staffSearchBtn").onclick=searchStaff;
+    $("staffSearch").addEventListener("keydown",e=>{if(e.key==="Enter")searchStaff();});
+    async function checkIn(id) {
+      const {error}=await db.from("checkins").upsert({guest_id:id,checked_in:true,checked_in_at:new Date().toISOString(),checked_in_by:(await db.auth.getUser()).data.user.id},{onConflict:"guest_id"});
+      if(error){showResult($("adminMessage"),"error","Check-in failed",error.message);return;}
+      showResult($("adminMessage"),"success","Guest checked in","The guest has been marked as arrived.");
+      await refreshDashboard(); await loadGuestList(); if($("staffSearch").value) await searchStaff();
+    }
+
+    (async()=>{
+      if(!configured) return;
+      const {data}=await db.auth.getSession();
+      if(data.session){setView("admin");await refreshDashboard();}
+    })();
+  </script>
+</body>
+</html>
